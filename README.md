@@ -1,1 +1,2 @@
-# code-scanning-template
+# Code Scanning Template
+
