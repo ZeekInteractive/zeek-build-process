@@ -29,7 +29,7 @@ cs-fixer: ## Code styling fixer
 	@$(bin)/php-cs-fixer fix --config=build/php-cs-fixer/.php-cs-fixer.dist.php --quiet
 
 lint: ## PHP Syntax Checking
-	@$(bin)/parallel-lint -j 10 app config routes --exclude vendor --no-progress --colors --blame
+	@$(bin)/parallel-lint -j 10 app config routes --no-progress --colors --blame
 
 phpmd: ## PHP Mess Detection
 	@$(bin)/phpmd app ansi build/phpmd/phpmd.xml
