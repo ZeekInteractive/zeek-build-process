@@ -11,8 +11,8 @@ help: ## This help message
 
 setup: versions ## Set up build system (Run this the first time)
 	@composer require --dev -n $(tools)
-	@cp $(template)/.env.ci .env.ci
-	@cp $(template)/.node-version .node-version
+	@cp $(template)/.env.ci -n .env.ci
+	@cp $(template)/.node-version -n .node-version
 	@mkdir -p .github/workflows && cp -n $(template)/build.yml .github/workflows/build.yml
 	@mkdir -p .git/hooks && cp $(template)/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
