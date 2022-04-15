@@ -2,17 +2,26 @@
 .PHONY: $(filter-out vendor node_modules,$(MAKECMDGOALS))
 
 bin = ./vendor/bin
+template = ./build/templates
+tools = friendsofphp/php-cs-fixer pestphp/pest php-parallel-lint/php-console-highlighter php-parallel-lint/php-parallel-lint phpmd/phpmd phpstan/phpstan
 
 help: ## This help message
 	@printf "\033[33mUsage:\033[0m\n  make [target]\n\n\033[33mTargets:\033[0m\n"
 	@grep -E '^[-a-zA-Z0-9_\.\/]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[32m%-15s\033[0m %s\n", $$1, $$2}'
+
+setup: versions ## Set up build system (Run this the first time)
+	@composer require --dev -n $(tools)
+	@cp $(template)/.env.ci .env.ci
+	@cp $(template)/.node-version .node-version
+	@mkdir -p .github/workflows && cp $(template)/build.yml .github/workflows/build.yml
+	@mkdir -p .git/hooks && cp $(template)/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
 # Version Management
 versions: ## Set PHP version
 	@valet use php@8.1
 
 ## Build Processes
-vendor: composer.json composer.lock ## Install PHP application
+vendor: composer.json composer.lock ## Install PHP dependencies
 	@composer install --quiet -n
 	@echo "PHP dependencies installed."
 

@@ -1,0 +1,53 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: '8.1'
+          extensions: ${{ env.extensions }}
+          key: extensions-${{ hashFiles('composer.lock') }}
+      - name: Cache extensions
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: ${{ env.extensions }}
+          php-version: '8.1'
+          coverage: none
+          tools: cs2pr
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - name: Run composer install
+        run: composer install --no-interaction --no-progress --ansi --prefer-dist
+
+      - name: Syntax Checking
+        run: ./vendor/bin/parallel-lint -j 10 app --no-progress --colors --checkstyle > report.xml
+
+      - name: Show linting results in PR
+        run: cs2pr ./report.xml
+
+      - name: PHP Mess Detector
+        run: ./vendor/bin/phpmd app github build/phpmd/phpmd.xml
+
+      - name: Static Analysis
+        run: php ./vendor/bin/phpstan analyse --no-progress --error-format=github build/phpstan/phpstan.neon.dist
