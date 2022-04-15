@@ -4,8 +4,7 @@ on:
   push:
 
 jobs:
-  test:
-    name: Linting, Static Analysis, Testing
+  build:
     runs-on: ubuntu-latest
     env:
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
