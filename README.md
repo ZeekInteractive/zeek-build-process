@@ -1,3 +1,9 @@
-# Code Scanning Template
+# Laravel Build Process
 
-[![Build](https://github.com/zeekinteractive/code-scanning-template/workflows/Build/badge.svg)](https://github.com/ZeekInteractive/code-scanning-template/actions/workflows/build.yml)
+Require this package as a `dev` dependency:
+
+```bash
+composer require zeek/laravel-build-process
+```
+
+Then ./vendor/bin/

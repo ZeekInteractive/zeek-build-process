@@ -1,10 +1,10 @@
 {
-	"name": "zeek/code-scanning-template",
-	"description": "Example template for how to set up automated code scanning.",
+	"name": "zeek/laravel-build-process",
+	"description": "Scaffold out the build process for Zeek Laravel Projects.",
 	"license": "proprietary",
 	"type": "project",
 	"require": {
-		"php": "^8.1"
+		"php": "^8.0|^8.1"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -13,19 +13,7 @@
 			"App\\": "app/"
 		}
 	},
-	"autoload-dev": {
-		"psr-4": {
-			"Tests\\": "tests/"
-		}
-	},
-	"config": {
-		"allow-plugins": {
-			"pestphp/pest-plugin": true
-		},
-		"optimize-autoloader": true,
-		"preferred-install": "dist",
-		"sort-packages": true
-	},
+	"bin": ["bin/laravel-build-process"],
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.8",
 		"pestphp/pest": "^1.21",

@@ -11,9 +11,9 @@ help: ## This help message
 
 setup: versions ## Set up build system (Run this the first time)
 	@composer require --dev -n $(tools)
-	@cp $(template)/.env.ci -n .env.ci
-	@cp $(template)/.node-version -n .node-version
-	@mkdir -p .github/workflows && cp -n $(template)/build.yml .github/workflows/build.yml
+	@rsync --ignore-existing $(template)/.env.ci .env.ci
+	@rsync --ignore-existing $(template)/.node-version .node-version
+	@mkdir -p .github/workflows && rsync --ignore-existing $(template)/build.yml .github/workflows/build.yml
 	@mkdir -p .git/hooks && cp $(template)/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
 # Version Management
@@ -46,10 +46,14 @@ phpmd: ## PHP Mess Detection
 phpstan: ## PHP Static Analyzer
 	@$(bin)/phpstan analyse --error-format=table -c build/phpstan/phpstan.neon.dist
 
+phpstan-baseline: ## PHP Static Analyzer. Generate Baseline.
+	@$(bin)/phpstan analyse --error-format=table -c build/phpstan/phpstan.neon.dist --generate-baseline=build/phpstan/phpstan-baseline.neon
+
 # Testing. Requires installing Pest
 #pest: ## PHP Tests
 #	$(bin)/pest --colors=always -c build/pest/phpunit.xml
 
 # Aliases
-precommit: cs-fixer lint phpmd phpstan #pest ## Run the git precommit actions
+precommit: cs-fixer lint phpstan ## Run style fixing and linting commands
+scan: cs-fixer lint phpmd phpstan ## Run all scans including mess detection and static analysis
 build: versions clean vendor node_modules precommit ## Recompile all assets from scratch
