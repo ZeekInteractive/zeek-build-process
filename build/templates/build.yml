@@ -37,6 +37,12 @@ jobs:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
 
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Add HTTP basic auth credentials
+        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
+
       - name: Run composer install
         run: composer install --no-interaction --no-progress --ansi --prefer-dist
 
