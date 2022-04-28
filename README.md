@@ -6,4 +6,8 @@ Require this package as a `dev` dependency:
 composer require zeek/laravel-build-process
 ```
 
-Then ./vendor/bin/
+Install by running:
+
+```bash
+./vendor/bin/zbp
+```
