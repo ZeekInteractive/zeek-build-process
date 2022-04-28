@@ -3,7 +3,7 @@
 Require this package as a `dev` dependency:
 
 ```bash
-composer require zeek/laravel-build-process
+composer require --dev zeek/laravel-build-process
 ```
 
 Install by running:
