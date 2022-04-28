@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo 'installing the zeek laravel build process1'
-pwd
-cd $(pwd)
-pwd

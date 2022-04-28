@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+use ZeekBuildProcess\Application;
+
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 80000) {
+    fwrite(STDERR, "Zeek Build Process requires PHP 8.0.0 or newer." . PHP_EOL);
+    exit(254);
+}
+
+$autoloadLocations = array(
+    getcwd() . '/vendor/autoload.php',
+    getcwd() . '/../../autoload.php',
+    __DIR__ . '/vendor/autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../autoload.php',
+);
+
+$loaded = false;
+foreach ($autoloadLocations as $autoload) {
+    if (is_file($autoload)) {
+        require_once($autoload);
+        $loaded = true;
+    }
+}
+
+if (!$loaded) {
+    fwrite(STDERR,
+        'You must set up the project dependencies, run the following commands:' . PHP_EOL .
+        'curl -s https://getcomposer.org/installer | php' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL
+    );
+    exit(254);
+}
+
+$app = new Application();
+exit($app->run());
