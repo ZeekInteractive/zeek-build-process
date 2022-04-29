@@ -12,17 +12,27 @@ trait ShellUtils
         $this->exec(sprintf('mkdir -p %s', $path));
     }
 
-    private function rsyncFileSafely(string $file, ?string $destination = null): void
+    private function rsyncFileSafely(string $file, ?string $destination = null, ?string $baseDir = null): void
     {
         if (empty($destination)) {
             $destination = $file;
         }
 
-        $this->exec(sprintf('rsync --ignore-existing %s/%s %s',
-            $this->templateDir,
+        if ( empty( $baseDir ) ) {
+            $baseDir = $this->templateDir;
+        }
+
+        $this->exec(sprintf('rsync -a %s %s/%s %s',
+            $this->noClobber ? '--ignore-existing' : '',
+            $baseDir,
             $file,
             $destination
         ));
+    }
+
+    private function rm(string $path): void
+    {
+        $this->exec('rm -rf '.$path);
     }
 
     private function info(string $message): void

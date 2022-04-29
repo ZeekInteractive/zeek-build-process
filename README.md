@@ -1,5 +1,10 @@
-# Laravel Build Process
+# Zeek Build Process
 
+
+## Requirements
+Currently this package only is meant for Laravel projects.
+
+## Installation
 Require this package as a `dev` dependency:
 
 ```bash

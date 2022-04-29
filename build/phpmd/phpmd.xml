@@ -9,6 +9,19 @@
 	<description>Ruleset for PHP Mess Detector that enforces coding standards</description>
 
 	<rule ref="rulesets/unusedcode.xml" />
-	<rule ref="rulesets/codesize.xml" />
 	<rule ref="rulesets/design.xml" />
+
+	<!-- Import entire code size rule set, modify NPath Complexity rule -->
+	<rule ref="rulesets/codesize.xml">
+		<exclude name="NPathComplexity" />
+	</rule>
+	<rule ref="rulesets/codesize.xml/NPathComplexity">
+		<properties>
+			<property name="minimum">
+				<value>
+					300
+				</value>
+			</property>
+		</properties>
+	</rule>
 </ruleset>
