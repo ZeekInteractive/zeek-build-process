@@ -10,7 +10,7 @@ help: ## This help message
 # Aliases
 precommit: cs-fixer lint phpstan ## Run style fixing and linting commands
 scan: cs-fixer lint phpmd phpstan ## Run all scans including mess detection and static analysis
-baseline: phpstan-baseline phpmd-baseline
+baseline: phpstan-baseline phpmd-baseline ## Generate baselines for mess detection and static analysis
 build: versions clean vendor node_modules precommit ## Recompile all assets from scratch
 
 # Version Management
@@ -58,6 +58,6 @@ phpstan-ci:
 phpstan-baseline: ## PHP Static Analyzer. Generate Baseline.
 	@$(bin)/phpstan analyse --error-format=table -c build/phpstan/phpstan.neon.dist --generate-baseline=build/phpstan/phpstan-baseline.neon
 
-# Testing. Requires installing Pest
+# Testing. Requires installing Pest. (Not included by default).
 pest: ## PHP Tests
 	$(bin)/pest --colors=always -c build/pest/phpunit.xml
