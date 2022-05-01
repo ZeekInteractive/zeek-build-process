@@ -16,9 +16,7 @@ This package helps to set up a project with the following tools:
 
 ## Demo
 
-<a href="https://www.loom.com/share/bec07edd758a4354b2b225306da7cdb7">
-   <img style="max-width:300px;" src="null">
-</a>
+https://user-images.githubusercontent.com/953022/166144308-9eb0efd2-2ae4-4c1d-919e-5986bc9b89de.mp4
 
 ## Requirements
 Currently, this package only is meant for Laravel projects.
