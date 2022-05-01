@@ -14,6 +14,12 @@ This package helps to set up a project with the following tools:
 * a `Makefile` to assist in running build and scanning commands in a consistent and simple manner
 * installation to a `git` pre-commit hook that will automatically run the `cs-fixer`, `linter` and `phpstan`
 
+## Demo
+
+<a href="https://www.loom.com/share/bec07edd758a4354b2b225306da7cdb7">
+   <img style="max-width:300px;" src="null">
+</a>
+
 ## Requirements
 Currently, this package only is meant for Laravel projects.
 
