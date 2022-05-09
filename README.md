@@ -35,7 +35,7 @@ Install by running:
 ./vendor/bin/zbp install
 ```
 
-This performs a safe, [no-clobber](https://unix.stackexchange.com/questions/572294/why-is-cps-option-not-to-overwrite-files-called-no-clobber) installation into an existing project. It does in an [idempotent](https://en.wikipedia.org/wiki/Idempotence) manner, so if you run the installation, make some changes to one of the configuration files and then run the installation again, it will not overwrite your changes.
+This performs a safe, [no-clobber](https://unix.stackexchange.com/questions/572294/why-is-cps-option-not-to-overwrite-files-called-no-clobber) installation into an existing project. It does so in an [idempotent](https://en.wikipedia.org/wiki/Idempotence) manner: if you run the installation, make some changes to one of the configuration files and then run the installation again, it will not overwrite your changes.
 
 ### Reinstall
 If you need to forcefully reinstall and start everything over from scratch you can run:
