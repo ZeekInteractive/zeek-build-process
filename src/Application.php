@@ -82,6 +82,8 @@ class Application
                     break;
 
                 case 'precommit':
+                    $this->noClobber = false;
+
                     $this->setupGitHook();
 
                     break;
