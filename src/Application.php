@@ -81,6 +81,10 @@ class Application
                     $this->install();
                     break;
 
+                case 'precommit':
+                    $this->setupGitHook();
+
+                    break;
                 case 'uninstall';
                     $this->uninstall();
 
@@ -130,7 +134,7 @@ class Application
 
         $this->setupComposerPackages();
 
-        $this->rsyncFileSafely('build/', 'build', dirname(__DIR__) );
+        $this->rsyncFileSafely('build/', 'build', dirname(__DIR__));
     }
 
     private function uninstall(): void

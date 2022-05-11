@@ -50,6 +50,16 @@ If you'd like to completely remove all the tools, files and packages that this i
 ./vendor/bin/zbp uninstall
 ```
 
+### Git Hook Installation
+
+If you just need to set up your own local `git` `pre-commit` hook, you can simply run:
+
+```bash
+./vendor/bin/zbp precommit
+```
+
+This will create a `.git/hooks/pre-commit` file that runs the `make precommit` command immediately before the actual git commit happens.
+
 ## Usage
 
 A `Makefile` is installed that defines the commands (with configured flags/parameters) to utilize the tools in an easy and repeatable manner.
