@@ -14,6 +14,10 @@ This package helps to set up a project with the following tools:
 * a `Makefile` to assist in running build and scanning commands in a consistent and simple manner
 * installation to a `git` pre-commit hook that will automatically run the `cs-fixer`, `linter` and `phpstan`
 
+## Demo
+
+https://user-images.githubusercontent.com/953022/166144308-9eb0efd2-2ae4-4c1d-919e-5986bc9b89de.mp4
+
 ## Requirements
 Currently, this package only is meant for Laravel projects.
 
@@ -31,7 +35,7 @@ Install by running:
 ./vendor/bin/zbp install
 ```
 
-This performs a safe, [no-clobber](https://unix.stackexchange.com/questions/572294/why-is-cps-option-not-to-overwrite-files-called-no-clobber) installation into an existing project. It does in an [idempotent](https://en.wikipedia.org/wiki/Idempotence) manner, so if you run the installation, make some changes to one of the configuration files and then run the installation again, it will not overwrite your changes.
+This performs a safe, [no-clobber](https://unix.stackexchange.com/questions/572294/why-is-cps-option-not-to-overwrite-files-called-no-clobber) installation into an existing project. It does so in an [idempotent](https://en.wikipedia.org/wiki/Idempotence) manner: if you run the installation, make some changes to one of the configuration files and then run the installation again, it will not overwrite your changes.
 
 ### Reinstall
 If you need to forcefully reinstall and start everything over from scratch you can run:
