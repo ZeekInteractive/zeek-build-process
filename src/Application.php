@@ -117,6 +117,10 @@ class Application
             return 'reinstall';
         }
 
+        if (in_array('precommit', $_SERVER['argv'], true)) {
+            return 'precommit';
+        }
+
         if (in_array('install', $_SERVER['argv'], true)) {
             return 'install';
         }
