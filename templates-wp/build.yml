@@ -1,6 +1,5 @@
 name: Build
 
-# WP Version
 on:
   push:
 

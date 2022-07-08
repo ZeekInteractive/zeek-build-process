@@ -38,6 +38,7 @@ class Application
      * @var bool
      */
     private bool $noClobber = true;
+    private bool $isWp = false;
 
     /**
      * Return codes
@@ -60,7 +61,7 @@ class Application
      */
     public function run(): int
     {
-        $this->templateDir = dirname(__DIR__).'/templates';
+        $this->init();
 
         $status = $this->maybeHandleHelp();
         if ($status !== self::RUNNING) {
@@ -75,6 +76,7 @@ class Application
                     $this->install();
 
                     break;
+
                 case 'reinstall';
                     $this->noClobber = false;
 
@@ -103,6 +105,20 @@ class Application
         return self::SUCCESS;
     }
 
+    private function init(): void
+    {
+        $this->isWp = str_contains($_SERVER['PWD'],  '/wp-content');
+
+        $templateDir = sprintf('templates%s',
+            $this->isWp ? '-wp' : ''
+        );
+
+        $this->templateDir = sprintf('%s/%s',
+            dirname(__DIR__),
+            $templateDir
+        );
+    }
+
     /**
      * @return string
      * @throws UnknownCommandException
@@ -123,6 +139,10 @@ class Application
             return 'precommit';
         }
 
+        if (in_array('install-wp', $_SERVER['argv'], true)) {
+            return 'install-wp';
+        }
+
         if (in_array('install', $_SERVER['argv'], true)) {
             return 'install';
         }
@@ -140,7 +160,7 @@ class Application
 
         $this->setupComposerPackages();
 
-        $this->rsyncFileSafely('build/', 'build', dirname(__DIR__));
+        $this->rsyncFileSafely('build/', 'build');
     }
 
     private function uninstall(): void

@@ -1,0 +1,10 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    reportUnmatchedIgnoredErrors: false
+    paths:
+        - ../../app
+
+    # The level 8 is the highest level
+    level: 4
