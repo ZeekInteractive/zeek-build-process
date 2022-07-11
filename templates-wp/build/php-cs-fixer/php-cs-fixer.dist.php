@@ -4,6 +4,7 @@ $appDir = dirname(__DIR__, 2);
 
 $finder = PhpCsFixer\Finder::create()
                            ->in($appDir.'/mu-plugins/app')
+                           ->in($appDir.'/themes/{{THEME_NAME}}')
                            ->name('*.php')
                            ->notName('*.env.php')
                            ->ignoreDotFiles(true)

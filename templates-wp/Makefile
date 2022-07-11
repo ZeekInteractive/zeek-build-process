@@ -2,6 +2,7 @@
 .PHONY: $(filter-out vendor node_modules,$(MAKECMDGOALS))
 
 appDir = ./mu-plugins/app
+themeDir = ./themes/{{THEME_NAME}}
 bin = $(appDir)/vendor/bin
 
 help: ## This help message
@@ -36,10 +37,10 @@ cs-fixer: ## Code styling fixer
 	@$(bin)/php-cs-fixer fix --config=build/php-cs-fixer/php-cs-fixer.dist.php --quiet
 
 lint: ## PHP Syntax Checking
-	@$(bin)/parallel-lint -j 10 $(appDir) --exclude $(appDir)/vendor --no-progress --colors --blame
+	@$(bin)/parallel-lint -j 10 $(appDir) $(themeDir) --exclude $(appDir)/vendor --no-progress --colors --blame
 
 lint-ci:
-	$(bin)/parallel-lint -j 10 $(appDir) --exclude $(appDir)/vendor --no-progress --colors --checkstyle > report.xml
+	$(bin)/parallel-lint -j 10 $(appDir) $(themeDir) --exclude $(appDir)/vendor --no-progress --colors --checkstyle > report.xml
 
 phpmd: ## PHP Mess Detection
 	@$(bin)/phpmd $(appDir)/src,$(appDir)/src-psr-4 ansi build/phpmd/phpmd.xml

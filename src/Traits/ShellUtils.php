@@ -40,4 +40,13 @@ trait ShellUtils
     {
         exec($command);
     }
+
+    private function sedSearchReplaceInFile(string $file, string $original, string $replacement): void
+    {
+        $this->exec("sed -i '' 's/$original/$replacement/g' $file");
+    }
+
+    private function searchReplaceTextInDirectory(string $directory, string $original, string $replacement): void {
+        $this->exec("grep -rl $original $directory | xargs sed -i '' 's/$original/$replacement/g'");
+    }
 }

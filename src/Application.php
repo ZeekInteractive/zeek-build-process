@@ -8,6 +8,7 @@ use ZeekBuildProcess\Traits\GitHook;
 use ZeekBuildProcess\Traits\Github;
 use ZeekBuildProcess\Traits\Help;
 use ZeekBuildProcess\Traits\ShellUtils;
+use ZeekBuildProcess\Traits\WpSupport;
 
 class Application
 {
@@ -16,6 +17,7 @@ class Application
     use Github;
     use GitHook;
     use ComposerPackages;
+    use WpSupport;
 
     /**
      * The current version of this package
@@ -29,6 +31,7 @@ class Application
      * @var bool
      */
     private bool $noClobber = true;
+    private string $pwd;
     private bool $isWp = false;
 
     /**
@@ -98,7 +101,8 @@ class Application
 
     private function init(): void
     {
-        $this->isWp = str_contains($_SERVER['PWD'],  '/wp-content');
+        $this->pwd = $_SERVER['PWD'];
+        $this->isWp = str_contains($this->pwd, '/wp-content');
 
         $templateDir = sprintf('templates%s',
             $this->isWp ? '-wp' : ''
@@ -152,6 +156,8 @@ class Application
         $this->setupComposerPackages();
 
         $this->rsyncFileSafely('build/', 'build');
+
+        $this->wpSpecificReplacements();
     }
 
     private function uninstall(): void

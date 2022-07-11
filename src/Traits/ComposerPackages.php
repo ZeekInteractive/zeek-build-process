@@ -7,7 +7,7 @@ use Yosymfony\Toml\Toml;
 trait ComposerPackages
 {
     private function composerPackages(): array {
-        $packages = Toml::parseFile($this->templateDir . '/composer-packages.toml');
+        $packages = Toml::parseFile($this->templateDir . '/zbp.toml');
 
         return $packages['packages'];
     }
