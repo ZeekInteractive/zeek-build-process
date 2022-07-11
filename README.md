@@ -19,7 +19,9 @@ This package helps to set up a project with the following tools:
 https://user-images.githubusercontent.com/953022/166144308-9eb0efd2-2ae4-4c1d-919e-5986bc9b89de.mp4
 
 ## Requirements
-Currently, this package only is meant for Laravel projects.
+This works with both Laravel and WordPress projects*.
+
+WordPress project structure must follow the Zeek project structure (`mu-plugins/app/`).
 
 ## Setup
 Require this package as a `dev` dependency:
@@ -29,7 +31,7 @@ composer require --dev zeek/zeek-build-process
 ```
 
 ### Install
-Install by running:
+Install by running (assuming your vendor path is `/vendor`):
 
 ```bash
 ./vendor/bin/zbp install
@@ -76,7 +78,7 @@ You can examine the [Makefile](https://github.com/ZeekInteractive/zeek-build-pro
 
 Useful aliases:
 
-Runs `cs-fixer`, `lint` and `phpstan`:
+Runs `cs-fixer` and `lint`:
 ```bash
 make precommit
 ```
