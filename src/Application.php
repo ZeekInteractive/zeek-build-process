@@ -22,15 +22,6 @@ class Application
      */
     private const VERSION = '0.1.0';
 
-    private const COMPOSER_PACKAGES = [
-        'friendsofphp/php-cs-fixer',
-        'pestphp/pest',
-        'php-parallel-lint/php-console-highlighter',
-        'php-parallel-lint/php-parallel-lint',
-        'phpmd/phpmd',
-        'phpstan/phpstan',
-    ];
-
     /**
      * Whether to overwrite existing build process files
      * By default it will NOT overwrite existing files in cases where someone has altered them for the project

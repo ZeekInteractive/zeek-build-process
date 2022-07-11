@@ -1,10 +1,12 @@
 includes:
     - phpstan-baseline.neon
+    - ../../mu-plugins/app/vendor/szepeviktor/phpstan-wordpress/extension.neon
 
 parameters:
     reportUnmatchedIgnoredErrors: false
     paths:
-        - ../../app
+        - ../../mu-plugins/app/src
+        - ../../mu-plugins/app/src-psr-4
 
     # The level 8 is the highest level
     level: 4

@@ -1,0 +1,8 @@
+packages = [
+    "friendsofphp/php-cs-fixer",
+    "php-parallel-lint/php-console-highlighter",
+    "php-parallel-lint/php-parallel-lint",
+    "phpmd/phpmd",
+    "phpstan/phpstan",
+    "szepeviktor/phpstan-wordpress",
+]

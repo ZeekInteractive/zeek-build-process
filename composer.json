@@ -4,9 +4,9 @@
 	"license": "proprietary",
 	"type": "project",
 	"require": {
-		"php": "^8.0 || ^8.1"
+		"php": "^8.0 || ^8.1",
+		"yosymfony/toml": "^1.0"
 	},
-	"require-dev": {},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"autoload": {

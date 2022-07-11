@@ -53,10 +53,10 @@ phpstan: ## PHP Static Analyzer
 	@$(bin)/phpstan analyse --error-format=table -c build/phpstan/phpstan.neon.dist
 
 phpstan-ci:
-	@$(bin)/phpstan analyse --no-progress --error-format=github build/phpstan/phpstan.neon.dist
+	@$(bin)/phpstan analyse --no-progress --error-format=github -c build/phpstan/phpstan.neon.dist
 
 phpstan-baseline: ## PHP Static Analyzer. Generate Baseline.
-	@$(bin)/phpstan analyse --error-format=table -c build/phpstan/phpstan.neon.dist --generate-baseline=build/phpstan/phpstan-baseline.neon
+	@$(bin)/phpstan analyse --error-format=table -c build/phpstan/phpstan.neon.dist --generate-baseline=build/phpstan/phpstan-baseline.neon --allow-empty-baseline
 
 # Testing. Requires installing Pest. (Not included by default).
 pest: ## PHP Tests

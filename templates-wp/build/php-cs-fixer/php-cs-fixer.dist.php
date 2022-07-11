@@ -3,12 +3,9 @@
 $appDir = dirname(__DIR__, 2);
 
 $finder = PhpCsFixer\Finder::create()
-                           ->in($appDir.'/app')
-                           ->in($appDir.'/config')
-                           ->in($appDir.'/database')
-                           ->in($appDir.'/routes')
+                           ->in($appDir.'/mu-plugins/app')
                            ->name('*.php')
-                           ->notName('*.blade.php')
+                           ->notName('*.env.php')
                            ->ignoreDotFiles(true)
                            ->ignoreVCS(true)
                            ->exclude('vendor');
