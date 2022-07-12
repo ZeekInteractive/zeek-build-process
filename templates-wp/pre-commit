@@ -1,6 +1,7 @@
 #!/bin/sh
 
-#wp version
+export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin
+
 set -e
 make precommit
 git add .
