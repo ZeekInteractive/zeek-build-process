@@ -10,7 +10,7 @@ jobs:
     env:
       extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup cache environment
         id: extcache
         uses: shivammathur/cache-extensions@v1
@@ -19,7 +19,7 @@ jobs:
           extensions: ${{ env.extensions }}
           key: extensions-${{ hashFiles('composer.lock') }}
       - name: Cache extensions
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.extcache.outputs.dir }}
           key: ${{ steps.extcache.outputs.key }}
@@ -33,7 +33,7 @@ jobs:
           tools: cs2pr
 
       - name: Cache composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}

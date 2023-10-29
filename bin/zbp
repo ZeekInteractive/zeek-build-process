@@ -8,6 +8,15 @@ if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 80000) {
     exit(254);
 }
 
+
+if ( ! function_exists('add_action') ) {
+    function add_action() {}
+}
+
+if ( ! function_exists('plugin_dir_url' ) ) {
+    function plugin_dir_url() {}
+}
+
 $autoloadLocations = array(
     getcwd() . '/vendor/autoload.php',
     getcwd() . '/../../autoload.php',
