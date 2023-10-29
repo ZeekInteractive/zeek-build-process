@@ -22,7 +22,7 @@ class Application
     /**
      * The current version of this package
      */
-    private const VERSION = '0.1.0';
+    private const VERSION = '0.2.0';
 
     /**
      * Whether to overwrite existing build process files

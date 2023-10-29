@@ -16,8 +16,8 @@ baseline: phpstan-baseline phpmd-baseline ## Generate baselines for mess detecti
 build: versions clean vendor node_modules precommit ## Recompile all assets from scratch
 
 # Version Management
-versions: ## Set PHP version. Using php 8.0 as it is the latest allowable version on WP Engine
-	@valet use php@8.0
+versions: ## Set PHP version. Using php 8.2 as it is the latest allowable version on WP Engine
+	@valet use php@8.2
 
 ## Build Processes
 vendor: composer.json composer.lock ## Install PHP dependencies

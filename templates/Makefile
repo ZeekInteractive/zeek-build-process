@@ -15,7 +15,7 @@ build: versions clean vendor node_modules precommit ## Recompile all assets from
 
 # Version Management
 versions: ## Set PHP version
-	@valet use php@8.1
+	@valet use php@8.2
 
 ## Build Processes
 vendor: composer.json composer.lock ## Install PHP dependencies
