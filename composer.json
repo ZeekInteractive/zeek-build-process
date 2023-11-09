@@ -1,7 +1,7 @@
 {
 	"name": "zeek/zeek-build-process",
 	"description": "Scaffold out the build process for Zeek Projects.",
-	"license": "proprietary",
+	"license": "MIT",
 	"type": "project",
 	"require": {
 		"php": "^8.0 || ^8.1",
