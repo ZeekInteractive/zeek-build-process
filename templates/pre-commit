@@ -3,5 +3,22 @@
 export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin
 
 set -e
+
+# Initial cache of files
+INIT_FILES=$(git diff --name-only --cached)
+
+# Run Make file
 make precommit
-git add .
+
+# Get the list of modified files after running php-cs-fixer
+MODIFIED_FILES=$(git diff --name-only --cached)
+
+# Compare the new list to the original list and add the matching files to the staging area
+for file in $MODIFIED_FILES; do
+    for init_file in $INIT_FILES; do
+        if [ "$file" = "$init_file" ] && [ -e "$file" ]; then
+            git add "$file"
+            break
+        fi
+    done
+done
